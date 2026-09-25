@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { title, description = 'Ensaios, notas e poesias pessoais.' } = Astro.props;
-const siteName = 'Caderno';
+const siteName = 'Caderno por Gregory de Albuquerque';
 const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
 ---
 
@@ -22,7 +22,7 @@ const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
   </head>
   <body>
     <header class="site-header">
-      <p class="site-title"><a href="/">Caderno</a></p>
+      <p class="site-title"><a href="/">Caderno por Gregory de Albuquerque</a></p>
       <nav class="site-nav">
         <a href="/">início</a>
         <a href="/ensaios">ensaios</a>
@@ -34,7 +34,7 @@ const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
       <slot />
     </main>
     <footer class="site-footer">
-      <p>&copy; {new Date().getFullYear()} — Caderno.</p>
+      <p>&copy; {new Date().getFullYear()} — Caderno por Gregory de Albuquerque.</p>
     </footer>
   </body>
 </html>
