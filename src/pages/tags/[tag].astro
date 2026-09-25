@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { sectionByCollection } from '../../utils/sections';
+
+export async function getStaticPaths() {
+  const [essays, notes, poems] = await Promise.all([
+    getCollection('essays', ({ data }) => !data.draft),
+    getCollection('notes', ({ data }) => !data.draft),
+    getCollection('poems', ({ data }) => !data.draft),
+  ]);
+
+  const entries = [
+    ...essays.map((entry) => ({ entry, collection: 'essays' as const })),
+    ...notes.map((entry) => ({ entry, collection: 'notes' as const })),
+    ...poems.map((entry) => ({ entry, collection: 'poems' as const })),
+  ];
+
+  const tagSet = new Set<string>();
+  for (const { entry } of entries) {
+    for (const tag of entry.data.tags) tagSet.add(tag);
+  }
+
+  return [...tagSet].map((tag) => {
+    const matches = entries
+      .filter(({ entry }) => entry.data.tags.includes(tag))
+      .sort((a, b) => b.entry.data.date.valueOf() - a.entry.data.date.valueOf());
+    return {
+      params: { tag },
+      props: { tag, matches },
+    };
+  });
+}
+
+const { tag, matches } = Astro.props;
+---
+
+<BaseLayout title={`Tag: ${tag}`} description={`Ensaios, notas e poesias marcados com ${tag}.`}>
+  <a class="back-link" href="/">&larr; início</a>
+  <h1>Tag: {tag}</h1>
+  <ul class="note-list">
+    {matches.map(({ entry, collection }) => {
+      const section = sectionByCollection(collection);
+      return (
+        <li>
+          <span class="note-date">
+            {entry.data.date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+            {' — '}{section.singular}
+          </span>
+          <a class="note-title" href={`/${section.path}/${entry.slug}`}>{entry.data.title}</a>
+          {entry.data.description && <p class="note-description">{entry.data.description}</p>}
+        </li>
+      );
+    })}
+  </ul>
+</BaseLayout>

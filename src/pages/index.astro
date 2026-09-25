@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allEssays = (await getCollection('essays', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const allNotes = (await getCollection('notes', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const allPoems = (await getCollection('poems', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const sections = [
+  { title: 'Ensaios recentes', items: allEssays, path: 'ensaios', seeAll: '/ensaios', seeAllLabel: 'Ver todos os ensaios' },
+  { title: 'Notas recentes', items: allNotes, path: 'notes', seeAll: '/notes', seeAllLabel: 'Ver todas as notas' },
+  { title: 'Poesias recentes', items: allPoems, path: 'poesias', seeAll: '/poesias', seeAllLabel: 'Ver todas as poesias' },
+];
+---
+
+<BaseLayout title="Caderno">
+  <section class="intro">
+    <p>
+      Este é um caderno pessoal — um lugar para ensaios, notas e poesias, escritos em texto simples
+      e organizados por assunto. Nem tudo aqui é definitivo; algumas notas mudam com o tempo.
+    </p>
+  </section>
+
+  {sections.map((section) => (
+    <>
+      <h2>{section.title}</h2>
+      {section.items.length > 0 ? (
+        <ul class="note-list">
+          {section.items.map((item) => (
+            <li>
+              <span class="note-date">
+                {item.data.date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+              </span>
+              <a class="note-title" href={`/${section.path}/${item.slug}`}>{item.data.title}</a>
+              {item.data.description && <p class="note-description">{item.data.description}</p>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="note-description">Nada por aqui ainda.</p>
+      )}
+      <p><a href={section.seeAll}>{section.seeAllLabel} &rarr;</a></p>
+    </>
+  ))}
+</BaseLayout>

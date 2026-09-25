@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPoems = await getCollection('poems', ({ data }) => !data.draft);
+const sortedPoems = allPoems.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const tagSet = new Set<string>();
+for (const poem of allPoems) {
+  for (const tag of poem.data.tags) tagSet.add(tag);
+}
+const allTags = [...tagSet].sort();
+---
+
+<BaseLayout title="Poesias" description="Todas as poesias do caderno.">
+  <h1>Poesias</h1>
+
+  {allTags.length > 0 && (
+    <p>
+      {allTags.map((tag) => (
+        <a class="tag" href={`/tags/${tag}`}>{tag}</a>
+      ))}
+    </p>
+  )}
+
+  <ul class="note-list">
+    {sortedPoems.map((poem) => (
+      <li>
+        <span class="note-date">
+          {poem.data.date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+        </span>
+        <a class="note-title" href={`/poesias/${poem.slug}`}>{poem.data.title}</a>
+        {poem.data.description && <p class="note-description">{poem.data.description}</p>}
+        {poem.data.tags.length > 0 && (
+          <p class="note-tags">
+            {poem.data.tags.map((tag) => (
+              <a class="tag" href={`/tags/${tag}`}>{tag}</a>
+            ))}
+          </p>
+        )}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

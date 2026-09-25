@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('notes', ({ data }) => !data.draft);
+const sortedNotes = allNotes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const tagSet = new Set<string>();
+for (const note of allNotes) {
+  for (const tag of note.data.tags) tagSet.add(tag);
+}
+const allTags = [...tagSet].sort();
+---
+
+<BaseLayout title="Notas" description="Todas as notas do caderno.">
+  <h1>Notas</h1>
+
+  {allTags.length > 0 && (
+    <p>
+      {allTags.map((tag) => (
+        <a class="tag" href={`/tags/${tag}`}>{tag}</a>
+      ))}
+    </p>
+  )}
+
+  <ul class="note-list">
+    {sortedNotes.map((note) => (
+      <li>
+        <span class="note-date">
+          {note.data.date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+        </span>
+        <a class="note-title" href={`/notes/${note.slug}`}>{note.data.title}</a>
+        {note.data.description && <p class="note-description">{note.data.description}</p>}
+        {note.data.tags.length > 0 && (
+          <p class="note-tags">
+            {note.data.tags.map((tag) => (
+              <a class="tag" href={`/tags/${tag}`}>{tag}</a>
+            ))}
+          </p>
+        )}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

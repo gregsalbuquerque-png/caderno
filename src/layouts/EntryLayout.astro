@@ -1,0 +1,43 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  tags: string[];
+  description?: string;
+  backHref: string;
+  backLabel: string;
+  poem?: boolean;
+}
+
+const { title, date, tags, description, backHref, backLabel, poem = false } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('pt-BR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <a class="back-link" href={backHref}>&larr; {backLabel}</a>
+  <article>
+    <h1>{title}</h1>
+    <p class="note-meta">
+      {formattedDate}
+      {tags.length > 0 && (
+        <span>
+          {' — '}
+          {tags.map((tag) => (
+            <a class="tag" href={`/tags/${tag}`}>{tag}</a>
+          ))}
+        </span>
+      )}
+    </p>
+    <div class={poem ? 'poem' : undefined}>
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
