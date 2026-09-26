@@ -30,7 +30,7 @@ Entretanto, eu não acredito nisso.
 Seria contestar Doutor Aquino
 E eu não tenho cacife (ou coragem) para isso
 E também não falamos tais coisas deste lado do Reno
-Se vem que Jó pode ter um ou duas coisas para falar a respeito
+Se bem que Jó pode ter um ou duas coisas para falar a respeito
 Mas pelo bem do poema, vamos seguir desse jeito.
 
 O motivo pelo qual Deus predestina os homens
