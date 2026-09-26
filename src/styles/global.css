@@ -125,6 +125,30 @@ img {
   line-height: 1.75;
 }
 
+sup a {
+  text-decoration: none;
+  color: var(--color-muted);
+  padding: 0 0.1em;
+}
+
+.footnotes {
+  margin-top: 2.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.footnotes p {
+  margin: 0;
+}
+
+.footnotes a {
+  font-style: normal;
+  text-decoration: none;
+}
+
 .site-header {
   padding-top: 3rem;
   padding-bottom: 1.5rem;
