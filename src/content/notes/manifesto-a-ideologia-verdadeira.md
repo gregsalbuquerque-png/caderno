@@ -15,7 +15,7 @@ Qual nobreza existe em seguir? Ou em fugir? Uns dizem que sempre existirão mest
 
 > **Nota do autor:** Esse primeiro texto, escrevi em 2025. Esse abaixo, escrevo hoje.
 
-Penso que continuo concordando com quase tudo que escrevi, e continuo acreditando que essa é a ideologia correta que deveríamos todos possuir (ideologia no senso da coisa pública), apenas mudaria que não se trata de uma "regalia", mas sim de uma ordenança divina. Esclareço isso para não corremos o risco de ter algo com valor intrínseco fora de Cristo. Devemos ser virtuosos como nossos subordinados e pessoas que dependem de nós, não pela virtude em si ou pelo mérito daqueles, mas pelo sacrifício que Cristo fez na cruz (essa sim, a relação mais desnivelada de toda a história, e que foi uma total regalia divina para conosco). Continuo acreditando que é sim um privilégio poder servir, mas faço essa distinção final.
+Penso que continuo concordando com quase tudo que escrevi, e continuo acreditando que essa é a ideologia correta que deveríamos todos possuir (ideologia no senso da coisa pública), apenas mudaria que não se trata de uma "regalia", mas sim de uma ordenança divina. Esclareço isso para não corremos o risco de ter algo com valor intrínseco fora de Cristo. Devemos ser virtuosos com os nossos subordinados e pessoas que dependem de nós, não pela virtude em si ou pelo mérito daqueles, mas pelo sacrifício que Cristo fez na cruz (essa sim, a relação mais desnivelada de toda a história, e que foi uma total regalia divina para conosco). Continuo acreditando que é sim um privilégio poder servir, mas faço essa distinção final.
 
 <div class="footnotes">
 
