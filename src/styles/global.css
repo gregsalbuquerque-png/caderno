@@ -112,6 +112,14 @@ hr {
   margin: 2rem 0;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 3px;
+}
+
 .poem p {
   margin: 0 0 1.4rem;
   line-height: 1.75;
